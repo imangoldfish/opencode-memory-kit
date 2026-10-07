@@ -30,8 +30,6 @@ session follows automatically (global hook + per-project `AGENTS.md` section).
 
 - [ ] Keep watching the custom MD tracker — it is the reference
       implementation and will surface real-world problems first.
-- [ ] Watch the first CI run on GitHub — confirm the `tests` workflow goes
-      green on the push that adds it (`gh run list --repo imangoldfish/opencode-memory-kit`).
 
 ## Ideas backlog (not started)
 
@@ -63,8 +61,8 @@ End with the exact command(s) that verify the claims. Keep it to a few lines.
 - Also: README badge + table rows + Tips bullets; AGENTS.md Layout/rules
   updated; `scaffold.sh` untouched this round but now covered by 13 tests
   (first run, clobber-protection, idempotency, hook wording sync).
-- Verify: `bash tests/smoke.sh` → ALL TESTS PASSED · `gh run list` after push
-  shows the `tests` workflow result.
+- Verify: `bash tests/smoke.sh` → ALL TESTS PASSED · `gh run list --repo
+  imangoldfish/opencode-memory-kit` → run 37608366055 `completed success`.
 
 #### 2026-10-07 — published to GitHub
 - Pushed repo public: https://github.com/imangoldfish/opencode-memory-kit
