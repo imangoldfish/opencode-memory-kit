@@ -28,6 +28,8 @@ session follows automatically (global hook + per-project `AGENTS.md` section).
 
 ## Next up
 
+- [ ] GitHub discussion with the human (next fresh session): backup/push for
+      the kit repo? git/GitHub learning topics? Decide and act.
 - [ ] Keep watching the custom MD tracker — it is the reference
       implementation and will surface real-world problems first.
 
@@ -47,6 +49,13 @@ Format:
 What happened · decisions + why · unfinished work · concrete next step.
 End with the exact command(s) that verify the claims. Keep it to a few lines.
 ```
+
+#### 2026-10-07 — handoff: session moved into this repo
+- Moved the working session into this repo (was in `custom MD`) so kit work
+  happens here from now on; kit is self-hosting per its own AGENTS.md.
+- No repo changes this session; next fresh session opens with a GitHub
+  discussion planned (see Next up).
+- Verify: `git status` clean · `git log --oneline -1` shows `c37def0`.
 
 #### 2026-10-07 — repo becomes its own project (template/live split)
 - Restructured the kit: seed materials now live in `template/`
