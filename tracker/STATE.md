@@ -5,7 +5,7 @@ Live handoff file for **this** repo — *not* the seed template (that's
 protocol in the global hook / `AGENTS.md`.
 
 **Last updated:** 2026-10-07
-**Status:** Healthy — public README + MIT ready; not pushed yet (human's call)
+**Status:** Healthy — published at https://github.com/imangoldfish/opencode-memory-kit
 
 ## Goal
 
@@ -28,11 +28,11 @@ session follows automatically (global hook + per-project `AGENTS.md` section).
 
 ## Next up
 
-- [ ] Push to GitHub when ready — README already assumes
-      `github.com/imangoldfish/opencode-memory-kit` (public-facing rewrite +
-      MIT committed locally; human chose prepare-only, no remote yet).
 - [ ] Keep watching the custom MD tracker — it is the reference
       implementation and will surface real-world problems first.
+- [ ] Decide with human: tester/reviewer agents for this repo? (asked 2026-10-07,
+      awaiting answer — likely shape: `tests/smoke.sh` + CI as "tester",
+      checklist subagent as "reviewer".)
 
 ## Ideas backlog (not started)
 
@@ -53,6 +53,15 @@ Format:
 What happened · decisions + why · unfinished work · concrete next step.
 End with the exact command(s) that verify the claims. Keep it to a few lines.
 ```
+
+#### 2026-10-07 — published to GitHub
+- Pushed repo public: https://github.com/imangoldfish/opencode-memory-kit
+  (`gh repo create --public`, remote `origin`, branch `master`).
+- Rebase-before-write: `git fetch` clean — no new remote commits.
+  Verify-before-claiming: closed the push item; stale "headed for GitHub"
+  claim fixed in `AGENTS.md`; historical log entries left untouched.
+- Unfinished: answer human's tester/reviewer-agent question (Next up).
+- Verify: `git remote -v` shows origin · `gh repo view imangoldfish/opencode-memory-kit --json visibility` → `"PUBLIC"`.
 
 #### 2026-10-07 — publish prep: public README + MIT (no push)
 - Rewrote `README.md` for a public audience (what/why, loop, install, step-by-step

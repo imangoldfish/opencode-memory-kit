@@ -25,7 +25,8 @@ now its own project, so sessions work on it directly.
 - Existing projects keep their own copies of the protocol; they pick up
   template changes only via `scaffold.sh` / copying — never by you editing
   their files other than their live tracker.
-- This repo is headed for GitHub — treat every committed file as public: no
+- This repo is **on GitHub** (public: `imangoldfish/opencode-memory-kit`) —
+  treat every committed file as public: no
   secrets, no personal commentary or private paths in committed entries
   (those go in the gitignored `tracker/.scratch.md`).
 - Commit changes normally, tracker together with the change.
