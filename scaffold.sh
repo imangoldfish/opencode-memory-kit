@@ -13,7 +13,7 @@ if [ ! -d "$KIT" ]; then
 fi
 
 mkdir -p tracker
-cp "$KIT/tracker/STATE.md" tracker/STATE.md
+cp "$KIT/template/STATE.md" tracker/STATE.md
 echo "Created tracker/STATE.md"
 if [ ! -f tracker/.gitignore ]; then
   printf '.scratch.md\n' > tracker/.gitignore
@@ -25,11 +25,11 @@ if [ -f AGENTS.md ]; then
     echo "AGENTS.md already has the protocol — left unchanged."
   else
     printf '\n' >> AGENTS.md
-    cat "$KIT/AGENTS.section.md" >> AGENTS.md
+    cat "$KIT/template/AGENTS.section.md" >> AGENTS.md
     echo "Appended tracker protocol to AGENTS.md"
   fi
 else
-  cp "$KIT/AGENTS.section.md" AGENTS.md
+  cp "$KIT/template/AGENTS.section.md" AGENTS.md
   echo "Created AGENTS.md with the tracker protocol"
 fi
 

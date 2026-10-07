@@ -13,8 +13,9 @@ is told (via `AGENTS.md`) to *read it first* and *update it last*.
 
 | File | Purpose |
 | --- | --- |
-| `AGENTS.section.md` | The protocol snippet — pasted into a project's `AGENTS.md` so every session follows the read-first / update-last loop |
-| `tracker/STATE.md` | The handoff tracker **template** (Goal · Current state · Next up · append-only Session log) — copied into new projects |
+| `template/AGENTS.section.md` | The protocol snippet (**canonical**) — pasted into a project's `AGENTS.md` so every session follows the read-first / update-last loop |
+| `template/STATE.md` | The handoff tracker **seed template** (Goal · Current state · Next up · append-only Session log) — copied into new projects by `scaffold.sh` |
+| `tracker/STATE.md` | **This repo's own live tracker** — real state, not a template. The kit is its own project now |
 | `scaffold.sh` | One command that drops the tracker + protocol into a new project |
 
 ## How it's installed (current machine)
@@ -37,10 +38,18 @@ From then on, any session in that project reads `tracker/STATE.md` first and
 updates it at the end, automatically. Real-world example:
 `~/Programming/OpenCode/custom MD/tracker/STATE.md`.
 
+## Working on the kit itself
+
+The kit is its own project now — open sessions directly in this directory.
+`tracker/STATE.md` here is this repo's live tracker (read first, update
+last). The seed materials live in `template/`; edit those to improve what
+`scaffold.sh` produces, and keep the global hook wording in sync.
+
 ## Actions I can take later (when I come back)
 
-- **Improve the templates** — better `AGENTS.section.md` or `tracker/STATE.md`
-  go here; run `scaffold.sh` in new projects to pick them up. Existing
+- **Improve the templates** — better `template/AGENTS.section.md` or
+  `template/STATE.md` go here; run `scaffold.sh` in new projects to pick
+  them up. Existing
   projects keep their own copies (they don't auto-update).
 - **Improvements already applied** (from a review brief): verify-before-
   claiming (grep the docs for stale references when closing a "Next up" item),
@@ -48,12 +57,12 @@ updates it at the end, automatically. Real-world example:
   "no code changes this session" entries, verify-command lines in each entry,
   log compaction to `tracker/archive/STATE-YYYY.md`, and privacy rules
   (sensitive scratch → untracked `tracker/.scratch.md`, gitignored). The
-  canonical text is `AGENTS.section.md`; the global hook
+  canonical text is `template/AGENTS.section.md`; the global hook
   (`~/.config/opencode/AGENTS.md`) is kept identical in wording.
 - **How updates propagate:** the template + scaffolder affect new projects
-  only. To upgrade an existing project, copy `AGENTS.section.md` into its
-  `AGENTS.md` (or re-run the scaffolder's append) and refresh its Session-log
-  Format block — never rewrite its existing entries.
+  only. To upgrade an existing project, copy `template/AGENTS.section.md`
+  into its `AGENTS.md` (or re-run the scaffolder's append) and refresh its
+  Session-log Format block — never rewrite its existing entries.
 - **Fix `scaffold.sh`** if OpenCode's AGENTS.md behavior changes.
 - **Add features**, e.g.: per-track trackers (several STATE files, one per
   area), a git hook or reminder to commit the tracker, a tiny
@@ -70,8 +79,9 @@ updates it at the end, automatically. Real-world example:
   tracker entries — keep them de-personalized. Sensitive scratch goes in the
   untracked `tracker/.scratch.md`.
 - No pushing to GitHub unless I decide to — it's a personal tool.
-- `tracker/STATE.md` in *this* repo is a **template**, not live state. The
-  real state lives in each project's own `tracker/STATE.md`.
+- `template/STATE.md` is the **seed template** (for scaffolds). This repo's
+  live state is its own `tracker/STATE.md`; every other project's tracker is
+  its own live state too.
 
 > _If you're reading this after a hiatus: you built a memory system for AI_
 > _sessions. It works — the Custom MD project used it and sessions hand off_
