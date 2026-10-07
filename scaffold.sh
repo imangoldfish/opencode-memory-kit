@@ -13,8 +13,12 @@ if [ ! -d "$KIT" ]; then
 fi
 
 mkdir -p tracker
-cp "$KIT/template/STATE.md" tracker/STATE.md
-echo "Created tracker/STATE.md"
+if [ ! -f tracker/STATE.md ]; then
+  cp "$KIT/template/STATE.md" tracker/STATE.md
+  echo "Created tracker/STATE.md"
+else
+  echo "tracker/STATE.md already exists — left unchanged (never overwrite live state)."
+fi
 if [ ! -f tracker/.gitignore ]; then
   printf '.scratch.md\n' > tracker/.gitignore
   echo "Created tracker/.gitignore (ignores .scratch.md)"

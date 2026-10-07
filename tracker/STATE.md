@@ -5,7 +5,7 @@ Live handoff file for **this** repo — *not* the seed template (that's
 protocol in the global hook / `AGENTS.md`.
 
 **Last updated:** 2026-10-07
-**Status:** Healthy — protocol + templates current; in use by the custom MD project
+**Status:** Healthy — public README + MIT ready; not pushed yet (human's call)
 
 ## Goal
 
@@ -28,8 +28,9 @@ session follows automatically (global hook + per-project `AGENTS.md` section).
 
 ## Next up
 
-- [ ] GitHub discussion with the human (next fresh session): backup/push for
-      the kit repo? git/GitHub learning topics? Decide and act.
+- [ ] Push to GitHub when ready — README already assumes
+      `github.com/imangoldfish/opencode-memory-kit` (public-facing rewrite +
+      MIT committed locally; human chose prepare-only, no remote yet).
 - [ ] Keep watching the custom MD tracker — it is the reference
       implementation and will surface real-world problems first.
 
@@ -38,6 +39,9 @@ session follows automatically (global hook + per-project `AGENTS.md` section).
 - Per-track trackers (multiple STATE files in one project).
 - A tiny state read/append helper (`oc-state`).
 - A git hook or reminder to commit the tracker.
+- Fix `scaffold.sh` if OpenCode's AGENTS.md behavior changes.
+- Re-check the global hook wording vs README if OpenCode changes how
+  AGENTS.md / global instructions load.
 
 ## Session log
 
@@ -49,6 +53,24 @@ Format:
 What happened · decisions + why · unfinished work · concrete next step.
 End with the exact command(s) that verify the claims. Keep it to a few lines.
 ```
+
+#### 2026-10-07 — publish prep: public README + MIT (no push)
+- Rewrote `README.md` for a public audience (what/why, loop, install, step-by-step
+  tutorial, tracker anatomy, tips, FAQ); added MIT `LICENSE`. Old README's
+  personal notes preserved in gitignored `tracker/.scratch.md`.
+- Decided with human: prepare only — no remote/push yet; they push themselves later.
+  Stale "personal, local-only / no GitHub" claims cleaned in `AGENTS.md` +
+  README. Protocol (`template/AGENTS.section.md`) untouched, so the global
+  hook stays wording-identical.
+- Scaffold bug found + fixed while smoke-testing: re-running `scaffold.sh`
+  used to overwrite a live `tracker/STATE.md` with the blank template (state
+  loss). Now it refuses to touch an existing tracker; still idempotent for
+  `AGENTS.md` / `.gitignore`.
+- No remote exists → rebase-before-write's `git fetch` not applicable here.
+- Unfinished: create `github.com/imangoldfish/opencode-memory-kit` + push
+  (Next up); clone URL in README assumes that name.
+- Verify: `grep -RniE 'local-only|No pushing|no GitHub remote' README.md AGENTS.md template/` empty ·
+  scaffold smoke test in a temp dir: run twice, second run leaves `tracker/STATE.md` untouched.
 
 #### 2026-10-07 — handoff: session moved into this repo
 - Moved the working session into this repo (was in `custom MD`) so kit work

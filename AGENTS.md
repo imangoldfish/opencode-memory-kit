@@ -1,8 +1,8 @@
 # AGENTS.md — opencode-memory-kit
 
-This repo **is** the cross-session memory kit — a personal, local-only tool
-that gives OpenCode projects shared memory across sessions via a handoff
-tracker. It's now its own project, so sessions work on it directly.
+This repo **is** the cross-session memory kit — a small tool that gives
+OpenCode projects shared memory across sessions via a handoff tracker. It's
+now its own project, so sessions work on it directly.
 
 ## Layout
 
@@ -25,6 +25,7 @@ tracker. It's now its own project, so sessions work on it directly.
 - Existing projects keep their own copies of the protocol; they pick up
   template changes only via `scaffold.sh` / copying — never by you editing
   their files other than their live tracker.
-- This repo stays local (no GitHub remote), no secrets, no personal
-  commentary in committed entries (`tracker/.scratch.md` for that).
+- This repo is headed for GitHub — treat every committed file as public: no
+  secrets, no personal commentary or private paths in committed entries
+  (those go in the gitignored `tracker/.scratch.md`).
 - Commit changes normally, tracker together with the change.
