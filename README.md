@@ -15,6 +15,20 @@ last*. Sessions hand off cleanly; the project's state survives.
 
 No database, no server, no dependencies — a few small files and a clone.
 
+## AI disclosure
+
+This project was made with AI assistance. It was developed through an
+agent-assisted workflow using an AI coding agent (OpenCode / Big Pickle): the
+primary agent designed and wrote the kit — the protocol, templates,
+`scaffold.sh`, the test suite, CI, and this documentation — while a dedicated
+AI reviewer subagent audited each round of changes against the project's own
+handoff protocol and caught real bugs. A human directed the project, made the
+decisions, and reviewed the work throughout.
+
+Fittingly, the kit is also its own first user: this repository's
+[`tracker/STATE.md`](tracker/STATE.md) is maintained by AI sessions
+following the protocol described below.
+
 ## What's inside
 
 | File | Purpose |

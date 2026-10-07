@@ -51,6 +51,14 @@ What happened · decisions + why · unfinished work · concrete next step.
 End with the exact command(s) that verify the claims. Keep it to a few lines.
 ```
 
+#### 2026-10-07 — AI disclosure section added to README
+- Human asked for an AI-made note like `custom MD`'s README; added an
+  "AI disclosure" section after the intro (same wording style: primary agent
+  wrote it, reviewer subagent audited, human directed/reviewed) plus the
+  meta-note that the repo self-hosts its tracker.
+- Verify: `grep -c 'AI disclosure' README.md` → 1 · `gh run list` → latest
+  `tests` run for the disclosure commit `completed success`.
+
 #### 2026-10-07 — tester + reviewer built (human picked both)
 - Decided with human: **tester = `tests/smoke.sh` + GitHub Actions**
   (deterministic, free, runs every push) rather than an agent; **reviewer =
