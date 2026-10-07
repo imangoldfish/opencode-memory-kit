@@ -15,6 +15,10 @@ fi
 mkdir -p tracker
 cp "$KIT/tracker/STATE.md" tracker/STATE.md
 echo "Created tracker/STATE.md"
+if [ ! -f tracker/.gitignore ]; then
+  printf '.scratch.md\n' > tracker/.gitignore
+  echo "Created tracker/.gitignore (ignores .scratch.md)"
+fi
 
 if [ -f AGENTS.md ]; then
   if grep -q "Cross-session tracker protocol" AGENTS.md; then

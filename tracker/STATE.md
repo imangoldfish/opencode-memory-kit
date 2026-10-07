@@ -28,13 +28,15 @@ section in `AGENTS.md` (or the global one in `~/.config/opencode/AGENTS.md`).
 
 ## Session log
 
-Append-only. Newest entry at the top.
+Append-only. Newest entry at the top. Past ~40–50 entries, move the oldest
+to `tracker/archive/STATE-YYYY.md` and leave a one-line summary entry —
+archive, never delete.
 
 ```text
 Format:
 #### <date> — <role / what this session was for>
 What happened · decisions + why · unfinished work · concrete next step.
-Keep it to a few lines.
+End with the exact command(s) that verify the claims. Keep it to a few lines.
 ```
 
 #### <date> — bootstrap

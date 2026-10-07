@@ -42,6 +42,18 @@ updates it at the end, automatically. Real-world example:
 - **Improve the templates** — better `AGENTS.section.md` or `tracker/STATE.md`
   go here; run `scaffold.sh` in new projects to pick them up. Existing
   projects keep their own copies (they don't auto-update).
+- **Improvements already applied** (from a review brief): verify-before-
+  claiming (grep the docs for stale references when closing a "Next up" item),
+  rebase-before-write (fetch + re-read before appending an entry), fallback
+  "no code changes this session" entries, verify-command lines in each entry,
+  log compaction to `tracker/archive/STATE-YYYY.md`, and privacy rules
+  (sensitive scratch → untracked `tracker/.scratch.md`, gitignored). The
+  canonical text is `AGENTS.section.md`; the global hook
+  (`~/.config/opencode/AGENTS.md`) is kept identical in wording.
+- **How updates propagate:** the template + scaffolder affect new projects
+  only. To upgrade an existing project, copy `AGENTS.section.md` into its
+  `AGENTS.md` (or re-run the scaffolder's append) and refresh its Session-log
+  Format block — never rewrite its existing entries.
 - **Fix `scaffold.sh`** if OpenCode's AGENTS.md behavior changes.
 - **Add features**, e.g.: per-track trackers (several STATE files, one per
   area), a git hook or reminder to commit the tracker, a tiny
@@ -54,6 +66,9 @@ updates it at the end, automatically. Real-world example:
 ## What NOT to do
 
 - No secrets or passwords in here.
+- No personal commentary, private paths, or the human's business in committed
+  tracker entries — keep them de-personalized. Sensitive scratch goes in the
+  untracked `tracker/.scratch.md`.
 - No pushing to GitHub unless I decide to — it's a personal tool.
 - `tracker/STATE.md` in *this* repo is a **template**, not live state. The
   real state lives in each project's own `tracker/STATE.md`.
