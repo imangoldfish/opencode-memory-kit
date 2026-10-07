@@ -63,8 +63,13 @@ End with the exact command(s) that verify the claims. Keep it to a few lines.
   checks (first run, clobber-protection, idempotency, hook wording sync — 11
   in CI where the hook is absent; count corrected from "13" after reviewer
   catch).
-- Verify: `bash tests/smoke.sh` → ALL TESTS PASSED · `gh run list --repo
-  imangoldfish/opencode-memory-kit` → run 37608366055 `completed success`.
+- Reviewer subagent dogfooded on `eeda65f..56ec973`: no blockers/majors; 2
+  minors (wrong "13 tests" claim; stale README "three small files" line) —
+  both fixed in `56ec973`. Nit: same-round entry correction noted inline
+  rather than appended.
+- Verify: `bash tests/smoke.sh` → ALL TESTS PASSED (12/12) ·
+  `gh run list --repo imangoldfish/opencode-memory-kit` → runs 37608366055
+  and 37610080945 both `completed success`.
 
 #### 2026-10-07 — published to GitHub
 - Pushed repo public: https://github.com/imangoldfish/opencode-memory-kit
