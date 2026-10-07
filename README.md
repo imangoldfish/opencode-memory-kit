@@ -13,7 +13,7 @@ decisions, repeating mistakes.
 session is instructed (via `AGENTS.md`) to *read it first* and *update it
 last*. Sessions hand off cleanly; the project's state survives.
 
-No database, no server, no dependencies — three small files and a clone.
+No database, no server, no dependencies — a few small files and a clone.
 
 ## What's inside
 

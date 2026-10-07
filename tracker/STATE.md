@@ -59,8 +59,10 @@ End with the exact command(s) that verify the claims. Keep it to a few lines.
   broad-before-exceptions per V2 docs so specific `shell` allows win over the
   default `ask`.
 - Also: README badge + table rows + Tips bullets; AGENTS.md Layout/rules
-  updated; `scaffold.sh` untouched this round but now covered by 13 tests
-  (first run, clobber-protection, idempotency, hook wording sync).
+  updated; `scaffold.sh` untouched this round but now covered by 12 smoke
+  checks (first run, clobber-protection, idempotency, hook wording sync — 11
+  in CI where the hook is absent; count corrected from "13" after reviewer
+  catch).
 - Verify: `bash tests/smoke.sh` → ALL TESTS PASSED · `gh run list --repo
   imangoldfish/opencode-memory-kit` → run 37608366055 `completed success`.
 
