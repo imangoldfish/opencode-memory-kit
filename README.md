@@ -37,9 +37,12 @@ following the protocol described below.
 | `template/STATE.md` | The handoff tracker **seed template** (Goal · Current state · Next up · append-only Session log) — copied into new projects by `scaffold.sh` |
 | `scaffold.sh` | One command that drops the tracker + protocol into a new project |
 | `tracker/STATE.md` | **This repo's own live tracker** — real state, not a template. The kit is its own first project |
-| `tests/smoke.sh` | Smoke tests for the scaffolder (first run, rerun never clobbers state, hook sync) — run with `bash tests/smoke.sh` |
+| `tests/smoke.sh` | Smoke tests for the scaffolder — 57 checks: edge cases, broken-kit validation, idempotency, regression guards, hook sync. Run with `bash tests/smoke.sh` |
 | `.github/workflows/test.yml` | CI — runs the smoke tests on every push and pull request |
-| `.opencode/agents/reviewer.md` | A read-only **reviewer subagent** that checks changes against the tracker protocol |
+| `.opencode/agents/reviewer.md` | **Reviewer subagent** — checks changes against the tracker protocol (verify commands, log format, stale refs, secrets) |
+| `.opencode/agents/tester.md` | **Tester subagent** — probes edge cases and grows `tests/smoke.sh` (may edit `tests/` only) |
+| `.opencode/agents/docs.md` | **Docs subagent** — verifies every README/AGENTS claim against the repo (edits docs only) |
+| `.opencode/agents/scrutiny.md` | **Scrutiny subagent** — line-by-line review of the shell code (read-only) |
 
 ## How it works
 
@@ -131,10 +134,16 @@ A real entry looks like this (from this repo's own tracker):
 
 ```text
 #### 2026-10-07 — repo becomes its own project (template/live split)
-- Restructured the kit: seed materials now live in `template/`.
+- Restructured the kit: seed materials now live in `template/`
+  (`AGENTS.section.md` + `STATE.md`); `tracker/STATE.md` is now THIS repo's
+  live tracker (this file), with its own `.gitignore`.
 - Rationale: starting sessions inside the kit dir would have made every
-  session read the old template as live state — drift.
-- Verify: `scaffold.sh` smoke test in a temp dir · `git status` clean after commit.
+  session read the old `tracker/STATE.md` template as live state — drift.
+- `scaffold.sh` now sources from `template/`; README + global hook footer
+  updated to match; a project `AGENTS.md` (this file's sibling) added so
+  sessions here know the layout.
+- Verify: `~/.config/opencode/memory-template/scaffold.sh` smoke test in a
+  temp dir · `git -C opencode-memory-kit status` clean after commit.
 ```
 
 Short, concrete, and it ends with the command that proves the claim.
@@ -159,10 +168,13 @@ lost.
 - **Test before you push** — `bash tests/smoke.sh` checks the scaffolder
   end-to-end (fresh run, rerun never overwrites live state, protocol/template
   sync). CI runs the same script on every push.
-- **Review before you commit** — in an OpenCode session in this repo, ask:
-  *"Use the reviewer subagent to review my current changes."* It runs each
-  entry's verify commands, checks log format, stale docs, and secrets —
-  read-only, it reports instead of fixing.
+- **Use the agent crew** — this repo ships four subagents under
+  `.opencode/agents/`. Ask for one by name, e.g. *"Use the reviewer
+  subagent to review my current changes"* or *"Use the scrutiny subagent on
+  scaffold.sh."* `reviewer` audits commits against the protocol, `tester`
+  hunts edge cases and adds tests, `docs` fact-checks the documentation, and
+  `scrutiny` reads the shell code line by line. All report instead of
+  guessing; only `tester` (edits `tests/`) and `docs` (edits docs) may write.
 - **Upgrade an existing project** — copy
   [`template/AGENTS.section.md`](template/AGENTS.section.md) into its
   `AGENTS.md` and refresh its Session-log Format block; never rewrite its

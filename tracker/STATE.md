@@ -5,7 +5,7 @@ Live handoff file for **this** repo — *not* the seed template (that's
 protocol in the global hook / `AGENTS.md`.
 
 **Last updated:** 2026-10-07
-**Status:** Healthy — published on GitHub; CI smoke tests + reviewer subagent in place
+**Status:** Healthy — published; four-subagent crew (reviewer/tester/docs/scrutiny) + 57-check CI suite
 
 ## Goal
 
@@ -25,6 +25,12 @@ session follows automatically (global hook + per-project `AGENTS.md` section).
 - Live proof: the custom MD project has used this system since bootstrap;
   its tracker contains real working entries.
 - Installed via symlink at `~/.config/opencode/memory-template` → this repo.
+- Four subagents in `.opencode/agents/`: `reviewer` (read-only protocol
+  audit), `tester` (edits `tests/` only), `docs` (edits docs only),
+  `scrutiny` (read-only line-by-line shell review).
+- `scaffold.sh` hardened after scrutiny+tester findings: validates templates
+  before writing, anchored `^##` protocol grep, refuses directory-shaped
+  targets, warns on wrong `.gitignore`. Suite: 57 checks, CI on every push.
 
 ## Next up
 
@@ -50,6 +56,22 @@ Format:
 What happened · decisions + why · unfinished work · concrete next step.
 End with the exact command(s) that verify the claims. Keep it to a few lines.
 ```
+
+#### 2026-10-07 — tester + docs + scrutiny agents; scaffold hardened from findings
+- Human asked for a tester, a docs agent, and a line-by-line shell reviewer →
+  built `.opencode/agents/{tester,docs,scrutiny}.md` (edit scope: `tests/` /
+  docs-only / none) alongside the existing `reviewer`. README table + Tips,
+  AGENTS.md Layout/rules document the four-agent crew (docs agent fixed its
+  own two finds: README example now verbatim from the log; AGENTS.md dropped
+  a colliding "the tester" label).
+- Dogfooded all three: `scrutiny` + `tester` independently found the same 3
+  scaffold bugs — unanchored protocol grep (a prose mention blocked install),
+  no template validation before mutating AGENTS.md (partial-apply), and
+  directory-shaped `STATE.md`/`AGENTS.md` cp-into-dir lie-success. Fixed all
+  three + minors (`.gitignore` silent skip, 2 test-quality issues). `tester`
+  grew the suite 12 → 48 checks; regression guards added → **57 checks**.
+- Verify: `bash tests/smoke.sh` → ALL TESTS PASSED (57) · `gh run list` after
+  push → `tests` run for this commit `completed success`.
 
 #### 2026-10-07 — AI disclosure section added to README
 - Human asked for an AI-made note like `custom MD`'s README; added an

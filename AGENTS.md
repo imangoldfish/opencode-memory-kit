@@ -13,12 +13,17 @@ now its own project, so sessions work on it directly.
   - `STATE.md` — the seed tracker (placeholders for a brand-new project).
 - `tracker/STATE.md` — **this repo's live handoff state. Not a template.**
 - `scaffold.sh` — copies `template/` into a new project.
-- `tests/smoke.sh` + `.github/workflows/test.yml` — the "tester": smoke tests
-  for the scaffolder, run by CI on every push (`bash tests/smoke.sh` locally).
-- `.opencode/agents/reviewer.md` — the "reviewer": a read-only subagent that
-  verifies tracker entries' verify commands, log format, stale doc refs, and
-  secrets. Ask for it: *"Use the reviewer subagent to review my current
-  changes."*
+- `tests/smoke.sh` + `.github/workflows/test.yml` — the smoke tests for the
+  scaffolder, run by CI on every push (`bash tests/smoke.sh` locally).
+- `.opencode/agents/` — four subagents:
+  - `reviewer` — read-only protocol audit: runs tracker entries' verify
+    commands, checks log format, stale refs, secrets. *"Use the reviewer
+    subagent to review my current changes."*
+  - `tester` — probes edge cases and grows `tests/smoke.sh` (edits `tests/`
+    only; never weakens an existing check).
+  - `docs` — fact-checks `README.md` / `AGENTS.md` against the repo, fixes
+    stale references (edits docs only).
+  - `scrutiny` — line-by-line review of the shell code (read-only).
 - `README.md` — welcome-back doc + the full story.
 
 ## Rules for sessions here
@@ -27,8 +32,9 @@ now its own project, so sessions work on it directly.
   `tracker/STATE.md` first, update it last, append-only log, end entries with
   verify commands.
 - When touching `scaffold.sh` or `template/`, finish with
-  `bash tests/smoke.sh` passing; for non-trivial changes, ask the
-  `reviewer` subagent to review before closing.
+  `bash tests/smoke.sh` passing; for non-trivial changes pick a subagent:
+  `scrutiny` after shell-code changes, `tester` for edge cases, `docs` after
+  doc edits, and `reviewer` before closing.
 - Improve the **template** (`template/…`), and be clear in tracker entries
   whether a change was "template" or "this repo's own state".
 - Existing projects keep their own copies of the protocol; they pick up
