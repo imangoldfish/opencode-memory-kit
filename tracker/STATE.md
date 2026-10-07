@@ -5,7 +5,7 @@ Live handoff file for **this** repo — *not* the seed template (that's
 protocol in the global hook / `AGENTS.md`.
 
 **Last updated:** 2026-10-07
-**Status:** Healthy — published at https://github.com/imangoldfish/opencode-memory-kit
+**Status:** Healthy — published on GitHub; CI smoke tests + reviewer subagent in place
 
 ## Goal
 
@@ -30,9 +30,8 @@ session follows automatically (global hook + per-project `AGENTS.md` section).
 
 - [ ] Keep watching the custom MD tracker — it is the reference
       implementation and will surface real-world problems first.
-- [ ] Decide with human: tester/reviewer agents for this repo? (asked 2026-10-07,
-      awaiting answer — likely shape: `tests/smoke.sh` + CI as "tester",
-      checklist subagent as "reviewer".)
+- [ ] Watch the first CI run on GitHub — confirm the `tests` workflow goes
+      green on the push that adds it (`gh run list --repo imangoldfish/opencode-memory-kit`).
 
 ## Ideas backlog (not started)
 
@@ -53,6 +52,19 @@ Format:
 What happened · decisions + why · unfinished work · concrete next step.
 End with the exact command(s) that verify the claims. Keep it to a few lines.
 ```
+
+#### 2026-10-07 — tester + reviewer built (human picked both)
+- Decided with human: **tester = `tests/smoke.sh` + GitHub Actions**
+  (deterministic, free, runs every push) rather than an agent; **reviewer =
+  read-only subagent** `.opencode/agents/reviewer.md` with a protocol
+  checklist (runs verify commands, log format, stale refs, secrets). Ordered
+  broad-before-exceptions per V2 docs so specific `shell` allows win over the
+  default `ask`.
+- Also: README badge + table rows + Tips bullets; AGENTS.md Layout/rules
+  updated; `scaffold.sh` untouched this round but now covered by 13 tests
+  (first run, clobber-protection, idempotency, hook wording sync).
+- Verify: `bash tests/smoke.sh` → ALL TESTS PASSED · `gh run list` after push
+  shows the `tests` workflow result.
 
 #### 2026-10-07 — published to GitHub
 - Pushed repo public: https://github.com/imangoldfish/opencode-memory-kit

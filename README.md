@@ -1,5 +1,7 @@
 # opencode-memory-kit
 
+[![tests](https://github.com/imangoldfish/opencode-memory-kit/actions/workflows/test.yml/badge.svg)](https://github.com/imangoldfish/opencode-memory-kit/actions/workflows/test.yml)
+
 Give AI coding sessions a **shared memory across sessions** — a tiny handoff
 tracker plus a protocol every session follows automatically.
 
@@ -21,6 +23,9 @@ No database, no server, no dependencies — three small files and a clone.
 | `template/STATE.md` | The handoff tracker **seed template** (Goal · Current state · Next up · append-only Session log) — copied into new projects by `scaffold.sh` |
 | `scaffold.sh` | One command that drops the tracker + protocol into a new project |
 | `tracker/STATE.md` | **This repo's own live tracker** — real state, not a template. The kit is its own first project |
+| `tests/smoke.sh` | Smoke tests for the scaffolder (first run, rerun never clobbers state, hook sync) — run with `bash tests/smoke.sh` |
+| `.github/workflows/test.yml` | CI — runs the smoke tests on every push and pull request |
+| `.opencode/agents/reviewer.md` | A read-only **reviewer subagent** that checks changes against the tracker protocol |
 
 ## How it works
 
@@ -137,6 +142,13 @@ lost.
 
 ## Tips
 
+- **Test before you push** — `bash tests/smoke.sh` checks the scaffolder
+  end-to-end (fresh run, rerun never overwrites live state, protocol/template
+  sync). CI runs the same script on every push.
+- **Review before you commit** — in an OpenCode session in this repo, ask:
+  *"Use the reviewer subagent to review my current changes."* It runs each
+  entry's verify commands, checks log format, stale docs, and secrets —
+  read-only, it reports instead of fixing.
 - **Upgrade an existing project** — copy
   [`template/AGENTS.section.md`](template/AGENTS.section.md) into its
   `AGENTS.md` and refresh its Session-log Format block; never rewrite its
